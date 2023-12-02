@@ -1,0 +1,17 @@
+.contenedor{
+  display: flex;
+  columns: 2;
+  width: 80%;
+  background-color: blueviolet;
+}
+
+.products{
+width: 200px;
+}
+img{
+width: 150px;
+}
+
+body{
+background-color: aquamarine;
+}
