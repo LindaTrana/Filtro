@@ -2,7 +2,7 @@ const articles = [
 {
   id:1,
   title:"Headphones gaming",
-  category: "Gaming Headset",
+  category: "Headphones",
   price: 25.20,
   img:'../imagens/9.jpg',
   desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -35,7 +35,7 @@ const articles = [
 {
   id:4,
   title:"Mouse Elite",
-  category: "mouse",
+  category: "Mouse",
   price: 25.20,
   img:'../imagens/HpSpectreMouse.jpeg',
   desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -57,8 +57,8 @@ const articles = [
 {
   id:6,
   title:"Headphones gaming",
-  category: "Gaming Headset",
-  price: 25.20,
+  category: "Headphones",
+  price: 40.25,
   img:'../imagens/800.jpg',
   desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
   Ad soluta expedita dolorum, distinctio ex placeat voluptate 
@@ -68,8 +68,8 @@ const articles = [
 {
   id:7,
   title:"earpods",
-  category: "Gaming Headset",
-  price: 15.20,
+  category: "Headphones",
+  price: 30.50,
   img:'../imagens/700.jpg',
   desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
   Ad soluta expedita dolorum, distinctio ex placeat voluptate 
@@ -79,9 +79,31 @@ const articles = [
 {
   id:8,
   title:"Mouse Logitech",
-  category: "mouse",
+  category: "Mouse",
   price: 30.20,
   img:'../imagens/500.jpg',
+  desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  Ad soluta expedita dolorum, distinctio ex placeat voluptate 
+  possimus. Fugit porro, rem, voluptates sunt maxime delectus
+  aut molestias aliquid blanditiis dolores neque!`
+},
+{
+  id:9,
+  title:"Gaming Chair",
+  category: "Chair",
+  price: 200.10,
+  img:'../imagens/1004.jpg',
+  desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  Ad soluta expedita dolorum, distinctio ex placeat voluptate 
+  possimus. Fugit porro, rem, voluptates sunt maxime delectus
+  aut molestias aliquid blanditiis dolores neque!`
+},
+{
+  id:10,
+  title:"Office Chair",
+  category: "Chair",
+  price: 90.80,
+  img:'../imagens/1005.jpg',
   desc:`Lorem ipsum dolor sit amet consectetur adipisicing elit.
   Ad soluta expedita dolorum, distinctio ex placeat voluptate 
   possimus. Fugit porro, rem, voluptates sunt maxime delectus
@@ -90,8 +112,15 @@ const articles = [
 ]
 
 const seccioncenter = document.querySelector('.section-center');
+const btnContainers = document.querySelector('.btn-container')
 
-window.addEventListener('DOMContentLoaded',function(){
+window.addEventListener("DOMContentLoaded", function(){
+  displayMenu(articles)
+  displayBtns() 
+});
+
+
+function displayMenu(articles){
   let mostrar = articles.map(function(item){
     return `
     <article class="menu-item">
@@ -101,10 +130,10 @@ window.addEventListener('DOMContentLoaded',function(){
             <h4>${item.title}</h4>
             <h4 class="price"> $${item.price}</h4>
           </header>
+          <p class="item-text">
+            ${item.desc}
+          </p>
         </div>
-        <p class="item-text">
-        ${item.desc}
-        </p>
       </article>
     
     `
@@ -112,4 +141,47 @@ window.addEventListener('DOMContentLoaded',function(){
 
  mostrar=mostrar.join("");
  seccioncenter.innerHTML=mostrar;
-})
+}
+
+function displayBtns(){
+  const categories = articles.reduce(function(values,item){
+    if(!values.includes(item.category)){
+      values.push(item.category)
+    }
+    return values
+  },
+  ['All']
+  );
+  
+  const categoriesBtn = categories.map(function(c){
+    return `
+    <button type="button" 
+      class="filter-btn" 
+      data-id=${c}>
+      ${c}
+      </button>
+      `
+    }).join('');
+    
+    btnContainers.innerHTML = categoriesBtn;
+    const filterBtns = document.querySelectorAll('.filter-btn');
+  
+    filterBtns.forEach(function(btn){
+      btn.addEventListener("click",function(e){
+        const category = e.currentTarget.dataset.id;
+        const artCategory = articles.filter(function(menuItem){
+          if(menuItem.category === category){
+            console.log(menuItem)
+            return menuItem
+          }
+          
+        })
+        if(category === 'All'){
+          displayMenu(articles)
+        } else{
+          displayMenu(artCategory)
+        }
+    
+      })
+    });
+}
