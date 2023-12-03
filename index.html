@@ -7,20 +7,35 @@
   <link rel="stylesheet" href="./Style/style.css">
 </head>
 <body>
-  <div class="botones">
-    <button type="button" id="bt-zapato">Zapato</button>
-    <button type="button" id="bt-audifono">Audifono</button>
-    <button type="button" id="bt-reloj">Reloj</button>
-  </div>
-  <div class="contenedor">
-    <div class="products"><img src="./imagens/600.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/1006.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/7.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/8.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/9.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/1004.jpg" alt=""></div>
-    <div class="products"><img src="./imagens/1005.jpg" alt=""></div>
-  </div>
+
+  <section class="menu">
+    <div class="title">
+      <h2>Our Articles</h2>
+      <div class="underline"></div>
+    </div>
+
+    <div class="btn-containers">
+      <button type="button" class="filter-btn">Laptop</button>
+      <button type="button" class="filter-btn">Audifono</button>
+      <button type="button" class="filter-btn">Reloj</button>
+    </div>
+    
+    <div class="section-center">
+      <article class="menu-item">
+        <img src="./imagens/600.jpg" class="photo" alt="menu item">
+        <div class="item-info">
+          <header>
+            <h4>Silla</h4>
+            <h4 class="price">$15</h4>
+          </header>
+        </div>
+        <p class="item-text">
+
+        </p>
+      </article>
+    </div>
+  </section>
+
   <script src="./JS/filtro.js"></script>
 </body>
 </html>
